@@ -38,18 +38,20 @@ export const SKILL_FOCUS = {
 };
 
 export const TECH_STACK = [
-  { name: "Python", subtitle: "Advanced (ML, NLP, Logic)", icon: "🐍", category: "Programming", progress: 85 },
-  { name: "Java", subtitle: "Intermediate (Swing, OOP, CRUD)", icon: "☕", category: "Programming", progress: 70 },
-  { name: "C Language", subtitle: "Core Data Structures", icon: "C", category: "Programming", progress: 75 },
-  { name: "HTML5", subtitle: "Semantic UI & Accessibility", icon: "5", category: "Web Tech", progress: 90 },
-  { name: "CSS3 & Glassmorphism", subtitle: "Flexbox, Grid, Animations", icon: "CSS", category: "Web Tech", progress: 85 },
-  { name: "JavaScript (ES6+)", subtitle: "Interactive DOM, Async APIs", icon: "JS", category: "Web Tech", progress: 80 },
-  { name: "Microsoft Power BI", subtitle: "Data Visualization & Dashboards", icon: "📊", category: "Tools & DB", progress: 85 },
-  { name: "MySQL Database", subtitle: "Relational Modeling & Queries", icon: "🗄️", category: "Tools & DB", progress: 80 },
-  { name: "IDE & Tools", subtitle: "VS Code, Apache NetBeans", icon: "💻", category: "Tools & DB", progress: 90 },
-  { name: "Problem-Solving", subtitle: "Algorithmic Mindset", icon: "🧩", category: "Soft Skills", progress: 95 },
-  { name: "Quick Learner & Adaptability", subtitle: "Rapid Tech Adoption", icon: "⚡", category: "Soft Skills", progress: 95 },
-  { name: "Teamwork & Time Management", subtitle: "Collaborative Execution", icon: "👥", category: "Soft Skills", progress: 90 },
+  { name: "Java", subtitle: "Intermediate", icon: "☕", category: "Programming", progress: 70 },
+  { name: "Python", subtitle: "Basic", icon: "🐍", category: "Programming", progress: 40 },
+  { name: "C Language", subtitle: "Basic", icon: "C", category: "Programming", progress: 40 },
+  { name: "HTML5", subtitle: "Basic", icon: "5", category: "Web Tech", progress: 40 },
+  { name: "CSS3", subtitle: "Basic", icon: "CSS", category: "Web Tech", progress: 40 },
+  { name: "JavaScript", subtitle: "Basic", icon: "JS", category: "Web Tech", progress: 40 },
+  { name: "Power BI", subtitle: "Intermediate", icon: "📊", category: "Tools & DB", progress: 70 },
+  { name: "Microsoft Excel", subtitle: "Intermediate", icon: "📗", category: "Tools & DB", progress: 70 },
+  { name: "Google Colab", subtitle: "Intermediate", icon: "📙", category: "Tools & DB", progress: 70 },
+  { name: "VS Code", subtitle: "Intermediate", icon: "💻", category: "Tools & DB", progress: 70 },
+  { name: "MySQL", subtitle: "Intermediate", icon: "🗄️", category: "Tools & DB", progress: 70 },
+  { name: "Problem-Solving", subtitle: "Algorithmic Mindset", icon: "🧩", category: "Soft Skills", progress: 90 },
+  { name: "Quick Learner", subtitle: "Rapid Tech Adoption", icon: "⚡", category: "Soft Skills", progress: 90 },
+  { name: "Teamwork", subtitle: "Collaborative Execution", icon: "👥", category: "Soft Skills", progress: 90 },
 ];
 
 export const ABOUT_CHIPS = [
