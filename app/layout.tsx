@@ -55,9 +55,9 @@ export default function RootLayout({
           <CustomCursor />
           <ParticleBackground />
           <Preloader />
-          <header className="fixed top-0 left-0 w-full p-6 z-40 flex items-center justify-between pointer-events-none">
+          <header className="fixed top-0 left-0 w-full p-4 md:p-6 z-40 flex items-center justify-between pointer-events-none">
             <div className="pointer-events-auto">
-              <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tighter text-slate-900 dark:text-white drop-shadow-lg opacity-90 hover:opacity-100 transition-opacity">
+              <h1 className="font-display font-bold text-lg sm:text-xl md:text-2xl tracking-tighter text-slate-900 dark:text-white drop-shadow-lg opacity-90 hover:opacity-100 transition-opacity">
                 Suwetha <span className="text-purple-600 dark:text-purple-400">S T</span>
               </h1>
             </div>
