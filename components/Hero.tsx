@@ -1,105 +1,125 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import NeuralVisualization from "./NeuralVisualization";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Code, Brain, Trophy, Lightbulb } from "lucide-react";
+import { SOCIALS } from "@/lib/data";
+import ResumeModal from "./ResumeModal";
 
 export default function Hero() {
-  const rootRef = useRef<HTMLDivElement | null>(null);
+  const [roleText, setRoleText] = useState("");
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (!rootRef.current) return;
+    const roles = [
+      "AI & Data Science Student",
+      "1st Rank Academic Achiever",
+      "Machine Learning Specialist",
+      "Data Analytics Practitioner",
+    ];
 
-    const ctx = gsap.context(() => {
-      const targets = rootRef.current!.querySelectorAll("[data-hero-reveal]");
-      if (prefersReducedMotion) {
-        gsap.set(targets, { opacity: 1, y: 0 });
-        return;
+    let currentRoleIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let timeout: NodeJS.Timeout;
+
+    const type = () => {
+      const currentRole = roles[currentRoleIndex];
+
+      if (isDeleting) {
+        setRoleText(currentRole.substring(0, currentCharIndex - 1));
+        currentCharIndex--;
+      } else {
+        setRoleText(currentRole.substring(0, currentCharIndex + 1));
+        currentCharIndex++;
       }
-      gsap.fromTo(
-        targets,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.12,
-          ease: "power3.out",
-          delay: 0.15,
-        }
-      );
-    }, rootRef);
 
-    return () => ctx.revert();
+      let typeSpeed = isDeleting ? 50 : 100;
+
+      if (!isDeleting && currentCharIndex === currentRole.length) {
+        typeSpeed = 2200;
+        isDeleting = true;
+      } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        typeSpeed = 400;
+      }
+
+      timeout = setTimeout(type, typeSpeed);
+    };
+
+    timeout = setTimeout(type, 1000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <section
-      id="home"
-      ref={rootRef}
-      className="relative min-h-screen flex items-center pt-32 pb-24"
-    >
-      <div className="container-edit grid lg:grid-cols-[45fr_55fr] gap-16 items-center w-full">
-        <div>
-          <p data-hero-reveal className="eyebrow mb-6">
-            AI • DATA SCIENCE • SOFTWARE DEVELOPMENT
-          </p>
-          <h1
-            data-hero-reveal
-            className="heading-serif font-display text-[clamp(2.75rem,6.5vw,6.5rem)] text-paper mb-8"
-          >
-            Building intelligent software and data&#8209;driven solutions
-            that solve real&#8209;world problems.
-          </h1>
-          <p
-            data-hero-reveal
-            className="text-paper-muted text-[clamp(1.05rem,1.3vw,1.25rem)] leading-[1.7] max-w-xl mb-10"
-          >
-            I&apos;m an AI &amp; Data Science student passionate about
-            combining software engineering, machine learning, and analytics
-            to create practical, scalable applications. From predictive
-            models to IoT systems and backend development, I enjoy
-            transforming ideas into meaningful digital solutions.
-          </p>
+    <>
+      <main className="hero relative min-h-screen flex items-center justify-center pt-24 pb-16" id="home">
+        {/* Floating Corner Icons */}
+        <div className="floating-icon icon-top-left">
+          <Code size={22} />
+        </div>
+        <div className="floating-icon icon-top-right">
+          <Brain size={22} />
+        </div>
+        <div className="floating-icon icon-bottom-left">
+          <Trophy size={22} />
+        </div>
+        <div className="floating-icon icon-bottom-right">
+          <Lightbulb size={22} />
+        </div>
 
-          <div
-            data-hero-reveal
-            className="flex flex-wrap items-center gap-4 mb-8"
-          >
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-full bg-gold text-ink px-7 py-3.5 text-sm font-medium tracking-wide hover:bg-gold-soft transition-colors"
-            >
-              View Projects
-              <ArrowRight size={16} strokeWidth={1.75} />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-3.5 text-sm font-medium tracking-wide text-paper hover:border-gold hover:text-gold transition-colors"
-            >
-              Contact Me
-            </a>
+        <div className="content-wrapper text-center z-10 max-w-4xl px-4 flex flex-col items-center">
+          <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-purple-500/80 shadow-[0_0_60px_rgba(168,85,247,0.5)] mb-8 mx-auto hover:scale-105 transition-transform duration-500">
+            <Image
+              src="/images/suwetha-portrait-new.jpg"
+              alt="Suwetha S T Profile"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
 
-          <a
-            data-hero-reveal
-            href="/Suwetha_S_T_Resume.pdf"
-            download="Suwetha_S_T_Resume.pdf"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest2 text-paper-muted hover:text-gold transition-colors"
-          >
-            <ArrowDown size={14} strokeWidth={1.75} />
-            Download Resume
-          </a>
-        </div>
+          <h2 className="sub-title text-lg md:text-xl text-text-muted font-normal">
+            Woah! You Landed on the Portfolio Website of The
+          </h2>
 
-        <div data-hero-reveal className="h-[380px] lg:h-[520px]">
-          <NeuralVisualization />
+          <h1 className="main-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display my-6 tracking-tight">
+            <span className="purple-text" id="typing-text">
+              {roleText}
+            </span>
+            <span className="animate-pulse text-purple-400">|</span>
+          </h1>
+
+          <h5 className="year text-base md:text-lg font-medium text-white/80 tracking-wide mb-8">
+            Suwetha S T | B.Tech AI & DS Undergrad (1st Rank Secured)
+          </h5>
+
+          <div className="hero-buttons flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={SOCIALS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-resume"
+            >
+              Let&apos;s Connect
+            </a>
+            <button
+              type="button"
+              onClick={() => setIsResumeModalOpen(true)}
+              className="btn-resume cursor-pointer"
+            >
+              View Resume
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </main>
+
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
+    </>
   );
 }

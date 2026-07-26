@@ -1,178 +1,125 @@
 "use client";
 
-import { useScrollReveal } from "@/lib/useScrollReveal";
-import { SOCIALS } from "@/lib/data";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
+import { User, Mail, MessageSquare, Send, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
-  const ref = useScrollReveal<HTMLDivElement>();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  };
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      form.subject || `Portfolio inquiry from ${form.name || "a visitor"}`
-    );
-    const body = encodeURIComponent(
-      `${form.message}\n\n— ${form.name}\n${form.email}`
-    );
-    window.location.href = `mailto:${SOCIALS.email}?subject=${subject}&body=${body}`;
+    if (!formData.name || !formData.email || !formData.message) return;
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 4000);
   };
 
   return (
-    <section id="contact" className="section-space" aria-labelledby="contact-heading">
-      <div className="container-edit" ref={ref}>
-        <div className="mb-16 max-w-3xl">
-          <p data-reveal className="eyebrow mb-4">
-            Get in Touch
-          </p>
-          <h2
-            data-reveal
-            id="contact-heading"
-            className="heading-serif font-display text-[clamp(2.25rem,5vw,4.5rem)]"
-          >
-            Let&apos;s Build Something Meaningful Together.
-          </h2>
-        </div>
+    <section className="contact-section py-16 md:py-24" id="contact">
+      <div className="contact-container w-full max-w-3xl mx-auto px-4">
+        <h2 className="section-title text-3xl sm:text-4xl font-bold font-display text-white text-center mb-4">
+          Get In Touch - <span className="purple-text">Ask Me Anything!</span>
+        </h2>
+        <h4 className="contact-note text-center text-sm md:text-base text-white/70 max-w-xl mx-auto mb-10 leading-relaxed font-normal">
+          Ready to collaborate or have an opportunity in mind?<br />
+          I&apos;m always open to new opportunities, research projects, and technical conversations.
+        </h4>
 
-        <div className="grid lg:grid-cols-[60fr_40fr] gap-12">
-          <form
-            data-reveal
-            onSubmit={handleSubmit}
-            className="card-surface p-8 sm:p-10 flex flex-col gap-6"
-          >
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-xs uppercase tracking-widest2 text-paper-muted">
-                  Name
-                </label>
+        <motion.div
+          className="contact-card glass-card p-8 md:p-10 rounded-3xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+        >
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <CheckCircle2 size={48} className="text-emerald-400 mb-4 animate-bounce" />
+              <h3 className="text-2xl font-bold text-white font-display mb-2">
+                Message Sent Successfully!
+              </h3>
+              <p className="text-sm text-white/70">
+                Thank you for reaching out, Suwetha will get back to you shortly.
+              </p>
+            </div>
+          ) : (
+            <form id="contactForm" className="contact-form flex flex-col gap-6" onSubmit={handleSubmit}>
+              {/* Name */}
+              <div className="form-group relative">
                 <input
+                  type="text"
                   id="name"
                   name="name"
-                  type="text"
                   required
-                  value={form.name}
-                  onChange={handleChange}
-                  className="bg-transparent border border-line rounded-xl2 px-4 py-3 text-paper placeholder:text-paper-muted/50 focus:border-gold outline-none transition-colors"
-                  placeholder="Your full name"
+                  placeholder=" "
+                  autoComplete="off"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all peer"
                 />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-xs uppercase tracking-widest2 text-paper-muted">
-                  Email
+                <label
+                  htmlFor="name"
+                  className="absolute left-11 top-3.5 text-xs text-white/50 pointer-events-none transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-[10px] peer-focus:bg-slate-900 peer-focus:px-2 peer-focus:text-purple-400 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2"
+                >
+                  Your Name
                 </label>
+                <User size={18} className="input-icon absolute left-3.5 top-4 text-white/40 peer-focus:text-purple-400 transition-colors" />
+              </div>
+
+              {/* Email */}
+              <div className="form-group relative">
                 <input
+                  type="email"
                   id="email"
                   name="email"
-                  type="email"
                   required
-                  value={form.email}
-                  onChange={handleChange}
-                  className="bg-transparent border border-line rounded-xl2 px-4 py-3 text-paper placeholder:text-paper-muted/50 focus:border-gold outline-none transition-colors"
-                  placeholder="you@example.com"
+                  placeholder=" "
+                  autoComplete="off"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all peer"
                 />
+                <label
+                  htmlFor="email"
+                  className="absolute left-11 top-3.5 text-xs text-white/50 pointer-events-none transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-[10px] peer-focus:bg-slate-900 peer-focus:px-2 peer-focus:text-purple-400 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2"
+                >
+                  Email Address
+                </label>
+                <Mail size={18} className="input-icon absolute left-3.5 top-4 text-white/40 peer-focus:text-purple-400 transition-colors" />
               </div>
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="subject" className="text-xs uppercase tracking-widest2 text-paper-muted">
-                Subject
-              </label>
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                value={form.subject}
-                onChange={handleChange}
-                className="bg-transparent border border-line rounded-xl2 px-4 py-3 text-paper placeholder:text-paper-muted/50 focus:border-gold outline-none transition-colors"
-                placeholder="What's this about?"
-              />
-            </div>
+              {/* Message */}
+              <div className="form-group relative">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  placeholder=" "
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all resize-none peer"
+                />
+                <label
+                  htmlFor="message"
+                  className="absolute left-11 top-3.5 text-xs text-white/50 pointer-events-none transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-[10px] peer-focus:bg-slate-900 peer-focus:px-2 peer-focus:text-purple-400 peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2"
+                >
+                  Your Message
+                </label>
+                <MessageSquare size={18} className="input-icon absolute left-3.5 top-4 text-white/40 peer-focus:text-purple-400 transition-colors" />
+              </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-xs uppercase tracking-widest2 text-paper-muted">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                value={form.message}
-                onChange={handleChange}
-                className="bg-transparent border border-line rounded-xl2 px-4 py-3 text-paper placeholder:text-paper-muted/50 focus:border-gold outline-none transition-colors resize-none"
-                placeholder="Tell me about your project or opportunity..."
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="self-start inline-flex items-center gap-2 rounded-full bg-gold text-ink px-8 py-3.5 text-sm font-medium tracking-wide hover:bg-gold-soft transition-colors"
-            >
-              Send Message
-              <Send size={16} strokeWidth={1.75} />
-            </button>
-            <p className="text-xs text-paper-muted">
-              Submitting opens your email client with this message pre-filled.
-            </p>
-          </form>
-
-          <div data-reveal className="flex flex-col gap-6">
-            <a
-              href={`mailto:${SOCIALS.email}`}
-              className="card-surface p-6 flex items-center gap-4 hover:-translate-y-1 transition-transform"
-            >
-              <span className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center flex-shrink-0">
-                <Mail size={18} strokeWidth={1.5} className="text-gold" />
-              </span>
-              <span>
-                <span className="block text-xs uppercase tracking-widest2 text-paper-muted mb-1">
-                  Email
-                </span>
-                <span className="text-paper text-sm break-all">{SOCIALS.email}</span>
-              </span>
-            </a>
-
-            <a
-              href={`tel:${SOCIALS.phone.replace(/\s/g, "")}`}
-              className="card-surface p-6 flex items-center gap-4 hover:-translate-y-1 transition-transform"
-            >
-              <span className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center flex-shrink-0">
-                <Phone size={18} strokeWidth={1.5} className="text-gold" />
-              </span>
-              <span>
-                <span className="block text-xs uppercase tracking-widest2 text-paper-muted mb-1">
-                  Phone
-                </span>
-                <span className="text-paper text-sm">{SOCIALS.phone}</span>
-              </span>
-            </a>
-
-            <div className="card-surface p-6 flex items-center gap-4">
-              <span className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center flex-shrink-0">
-                <MapPin size={18} strokeWidth={1.5} className="text-gold" />
-              </span>
-              <span>
-                <span className="block text-xs uppercase tracking-widest2 text-paper-muted mb-1">
-                  Location
-                </span>
-                <span className="text-paper text-sm">Coimbatore, Tamil Nadu</span>
-              </span>
-            </div>
-          </div>
-        </div>
+              <button type="submit" className="btn-resume btn-submit flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto self-end px-8 py-3.5">
+                <span>Send Message</span>
+                <Send size={16} />
+              </button>
+            </form>
+          )}
+        </motion.div>
       </div>
     </section>
   );

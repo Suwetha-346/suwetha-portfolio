@@ -1,51 +1,72 @@
 "use client";
 
-import { useScrollReveal } from "@/lib/useScrollReveal";
-import { SKILL_GROUPS } from "@/lib/data";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { TECH_STACK } from "@/lib/data";
 
 export default function Skills() {
-  const ref = useScrollReveal<HTMLDivElement>();
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filterCategories = [
+    { id: "all", label: "All" },
+    { id: "languages", label: "Languages" },
+    { id: "backend", label: "AI / ML & Analytics" },
+    { id: "databases", label: "Databases" },
+    { id: "tools", label: "Tools & Hardware" },
+  ];
+
+  const filteredSkills =
+    activeFilter === "all"
+      ? TECH_STACK
+      : TECH_STACK.filter((skill) => skill.category === activeFilter);
 
   return (
-    <section id="skills" className="section-space" aria-labelledby="skills-heading">
-      <div className="container-edit" ref={ref}>
-        <div className="mb-16 max-w-2xl">
-          <p data-reveal className="eyebrow mb-4">
-            Capabilities
-          </p>
-          <h2
-            data-reveal
-            id="skills-heading"
-            className="heading-serif font-display text-[clamp(2rem,4vw,3.5rem)]"
-          >
-            Skills &amp; Tools
-          </h2>
-        </div>
+    <section className="skills-section py-16 md:py-24" id="skills">
+      <div className="w-full max-w-5xl mx-auto px-4">
+        <h2 className="section-title text-3xl sm:text-4xl font-bold font-display text-white text-center mb-8">
+          Technical Skills - <span className="purple-text">Core Expertise!</span>
+        </h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKILL_GROUPS.map((group) => (
-            <div
-              key={group.title}
-              data-reveal
-              className="card-surface p-8"
+        {/* Filter Buttons */}
+        <div className="skill-filters flex flex-wrap items-center justify-center gap-3 mb-12">
+          {filterCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveFilter(cat.id)}
+              className={`filter-btn px-5 py-2.5 rounded-full text-xs font-mono transition-all duration-300 ${
+                activeFilter === cat.id
+                  ? "active bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold shadow-lg shadow-purple-500/25 border-transparent"
+                  : "bg-white/5 text-white/70 hover:text-white border border-white/10 hover:border-purple-500/30"
+              }`}
             >
-              <h3 className="font-display text-xl mb-6 text-paper">
-                {group.title}
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-paper-muted text-sm"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {cat.label}
+            </button>
           ))}
         </div>
+
+        {/* Skill Grid */}
+        <motion.div layout className="skill-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <AnimatePresence>
+            {filteredSkills.map((skill) => (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="skill-card glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-3 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all duration-300 group cursor-default"
+              >
+                <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                  {skill.icon}
+                </span>
+                <span className="text-xs font-mono font-medium text-white/90 group-hover:text-purple-300 transition-colors">
+                  {skill.name}
+                </span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

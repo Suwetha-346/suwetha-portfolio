@@ -1,97 +1,40 @@
 "use client";
 
-import { ExternalLink, Github, ImageOff } from "lucide-react";
+import { Github } from "lucide-react";
 import type { Project } from "@/lib/data";
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <article
-      data-reveal
-      className="card-surface flex flex-col overflow-hidden group hover:-translate-y-2"
-    >
-      <div className="relative aspect-[16/10] bg-ink-soft border-b border-line flex flex-col items-center justify-center gap-2">
-        <ImageOff size={32} strokeWidth={1} className="text-paper-muted" aria-hidden="true" />
-        <span className="text-[11px] uppercase tracking-widest2 text-paper-muted">
-          Project image placeholder
-        </span>
-        <span className="absolute top-4 left-4 font-display text-sm text-gold/80">
-          {project.index}
-        </span>
+    <article className="group relative bg-card border border-border hover:border-violet/50 rounded-2xl p-6 transition-colors duration-300 h-full flex flex-col">
+      <div className="absolute inset-0 bg-grad-brand opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+      
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.tech.map((t) => (
+          <span key={t} className="text-xs font-mono text-text-faint px-2 py-1 rounded-sm bg-white/5 border border-white/5">
+            {t}
+          </span>
+        ))}
       </div>
-
-      <div className="p-8 flex flex-col flex-1">
-        <h3 className="font-display text-2xl mb-3 text-paper">
-          {project.title}
-        </h3>
-        <p className="text-paper-muted text-sm leading-[1.7] mb-5">
-          {project.description}
-        </p>
-
-        <ul className="flex flex-col gap-2 mb-6">
-          {project.highlights.map((h) => (
-            <li key={h} className="flex gap-2 text-sm text-paper-muted leading-[1.6]">
-              <span className="text-gold mt-1.5 flex-shrink-0" aria-hidden="true">
-                &bull;
-              </span>
-              {h}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-[11px] uppercase tracking-wide px-3 py-1 rounded-full border border-line text-paper-muted"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-auto flex items-center gap-5 pt-6 border-t border-line">
-          {project.liveDemo ? (
-            <a
-              href={project.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-paper hover:text-gold transition-colors"
-            >
-              <ExternalLink size={15} strokeWidth={1.75} />
-              Live Demo
-            </a>
-          ) : (
-            <span
-              className="inline-flex items-center gap-2 text-sm text-paper-muted/60 cursor-not-allowed"
-              aria-disabled="true"
-              title="Live demo link not yet available"
-            >
-              <ExternalLink size={15} strokeWidth={1.75} />
-              Live Demo — Placeholder
-            </span>
-          )}
-
-          {project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-paper hover:text-gold transition-colors"
-            >
-              <Github size={15} strokeWidth={1.75} />
-              GitHub
-            </a>
-          ) : (
-            <span
-              className="inline-flex items-center gap-2 text-sm text-paper-muted/60 cursor-not-allowed"
-              aria-disabled="true"
-              title="Repository link not yet available"
-            >
-              <Github size={15} strokeWidth={1.75} />
-              GitHub — Placeholder
-            </span>
-          )}
-        </div>
+      
+      <h3 className="font-display font-semibold text-xl md:text-2xl mb-2 text-white group-hover:text-violet transition-colors">
+        {project.title}
+      </h3>
+      
+      <p className="text-text-muted text-sm md:text-base mb-6 flex-grow">
+        {project.description}
+      </p>
+      
+      <div className="flex items-center gap-4 mt-auto">
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-text hover:text-white font-medium"
+          >
+            GitHub <span className="text-violet">→</span>
+          </a>
+        )}
       </div>
     </article>
   );

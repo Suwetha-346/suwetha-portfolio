@@ -1,87 +1,72 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-playfair",
-  display: "swap",
-});
+import Preloader from "@/components/Preloader";
+import CustomCursor from "@/components/CustomCursor";
+import ParticleBackground from "@/components/ParticleBackground";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import { Providers } from "./providers";
+import Chatbot from "@/components/Chatbot";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const SITE_URL = "https://suwetha-portfolio.example.com"; // Placeholder canonical URL — replace with real domain when deployed
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: "Suwetha S T | AI & Data Science Portfolio",
+  title: "Suwetha S T | DevHQ Personal Portfolio",
   description:
-    "Portfolio of Suwetha S T showcasing AI & Data Science projects, backend development, machine learning, software engineering, and data analytics work.",
-  keywords: [
-    "Suwetha S T",
-    "AI Data Science Portfolio",
-    "Software Developer",
-    "Backend Developer",
-    "Data Analytics",
-    "Machine Learning",
-  ],
-  authors: [{ name: "Suwetha S T" }],
-  alternates: {
-    canonical: SITE_URL, // Placeholder — update once the site is deployed
-  },
+    "Personal Portfolio of Suwetha S T, B.Tech Artificial Intelligence and Data Science Undergraduate & 1st Rank Academic Achiever. Explore projects, certifications, and experience.",
   openGraph: {
-    title: "Suwetha S T | AI & Data Science Portfolio",
-    description:
-      "Portfolio of Suwetha S T showcasing AI & Data Science projects, backend development, machine learning, software engineering, and data analytics work.",
-    url: SITE_URL,
-    siteName: "Suwetha S T Portfolio",
-    images: [
-      {
-        url: "/images/og-placeholder.svg", // Placeholder OG image — replace with a real 1200x630 screenshot
-        width: 1200,
-        height: 630,
-        alt: "Suwetha S T — AI & Data Science Portfolio",
-      },
-    ],
-    locale: "en_US",
+    title: "Suwetha S T | DevHQ Personal Portfolio",
+    description: "Explore my AI & Data Science projects, academic achievements, and certifications.",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Suwetha S T | AI & Data Science Portfolio",
-    description:
-      "Portfolio of Suwetha S T showcasing AI & Data Science, backend development, and data analytics work.",
-    images: ["/images/og-placeholder.svg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="bg-ink text-paper font-body antialiased">
-        <div className="grain-overlay" aria-hidden="true" />
-        <SmoothScrollProvider>
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} scroll-smooth`}
+    >
+      <body className="bg-bg dark:bg-[#0a0a0f] text-slate-800 dark:text-white font-sans antialiased selection:bg-purple-500/30 selection:text-purple-200 min-h-screen relative overflow-x-hidden transition-colors duration-500">
+        <Providers>
+          <ScrollProgressBar />
+          <CustomCursor />
+          <ParticleBackground />
+          <Preloader />
+          <header className="fixed top-0 left-0 w-full p-6 z-40 flex items-center justify-between pointer-events-none">
+            <div className="pointer-events-auto">
+              <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tighter text-slate-900 dark:text-white drop-shadow-lg opacity-90 hover:opacity-100 transition-opacity">
+                Suwetha <span className="text-purple-600 dark:text-purple-400">S T</span>
+              </h1>
+            </div>
+          </header>
           <Navbar />
-          <main id="main-content">{children}</main>
+          {children}
+          <Chatbot />
           <Footer />
-        </SmoothScrollProvider>
+        </Providers>
       </body>
     </html>
   );

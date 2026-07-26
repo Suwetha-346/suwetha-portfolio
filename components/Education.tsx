@@ -23,16 +23,17 @@ export default function Education() {
           </h2>
         </div>
 
-        <ol className="relative max-w-3xl border-l border-line pl-10 flex flex-col gap-14">
+        <ol className="relative max-w-3xl border-l border-line pl-6 sm:pl-10 flex flex-col gap-10 sm:gap-14">
           {EDUCATION.map((edu) => (
             <li key={edu.degree + edu.institution} data-reveal className="relative">
               <span
-                className="absolute -left-[45px] top-1.5 w-9 h-9 -translate-x-[3px] rounded-full bg-ink-soft border border-gold/40 flex items-center justify-center"
+                className="absolute -left-[27px] sm:-left-[45px] top-1.5 w-7 h-7 sm:w-9 sm:h-9 -translate-x-[3px] rounded-full bg-ink-soft border border-gold/40 flex items-center justify-center"
                 aria-hidden="true"
               >
-                <GraduationCap size={16} strokeWidth={1.75} className="text-gold" />
+                <GraduationCap size={14} strokeWidth={1.75} className="text-gold sm:hidden" />
+                <GraduationCap size={16} strokeWidth={1.75} className="text-gold hidden sm:block" />
               </span>
-              <h3 className="font-display text-2xl text-paper mb-1">
+              <h3 className="font-display text-xl sm:text-2xl text-paper mb-1">
                 {edu.degree}
               </h3>
               <p className="text-paper-muted text-sm mb-1">{edu.field}</p>

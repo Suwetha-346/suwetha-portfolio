@@ -9,57 +9,71 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: {
-          DEFAULT: "#0B0B0B",
-          soft: "#111111",
-          raised: "#161514",
+        bg: {
+          DEFAULT: "#0a070d",
+          soft: "#120a16",
         },
-        paper: {
-          DEFAULT: "#F5F5F5",
-          muted: "#A8A6A1",
-          faint: "#6E6C68",
+        card: {
+          DEFAULT: "#17101c",
+          hover: "#1e1424",
         },
-        gold: {
-          DEFAULT: "#C9A15D",
-          soft: "#DCC08C",
-          dim: "#8A7245",
+        border: {
+          DEFAULT: "rgba(255,255,255,0.08)",
+          strong: "rgba(255,255,255,0.16)",
         },
-        line: "rgba(245,245,245,0.08)",
+        violet: {
+          DEFAULT: "#8b5cf6",
+        },
+        magenta: {
+          DEFAULT: "#d946ef",
+        },
+        ember: {
+          DEFAULT: "#f97316",
+          soft: "#fb923c",
+        },
+        text: {
+          DEFAULT: "#f3eef7",
+          muted: "#a99bb5",
+          faint: "#6f6478",
+        },
+      },
+      backgroundImage: {
+        'grad-brand': 'linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%)',
+        'grad-ember': 'linear-gradient(135deg, var(--ember) 0%, var(--ember-soft) 100%)',
+        'grad-glow': 'radial-gradient(circle at 30% 20%, rgba(139,92,246,0.35), transparent 60%), radial-gradient(circle at 80% 70%, rgba(217,70,239,0.25), transparent 55%)',
       },
       fontFamily: {
-        display: ["var(--font-playfair)", "serif"],
+        display: ["var(--font-space-grotesk)", "sans-serif"],
         body: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
-      maxWidth: {
-        container: "1400px",
+      boxShadow: {
+        'card': '0 10px 30px -12px rgba(0,0,0,0.6)',
+        'glow': '0 0 40px rgba(139,92,246,0.25)',
       },
-      borderRadius: {
-        xl2: "16px",
-        xl3: "24px",
+      transitionTimingFunction: {
+        ease: "cubic-bezier(.65,0,.35,1)",
+        'ease-out-back': "cubic-bezier(.34,1.56,.64,1)",
       },
-      letterSpacing: {
-        widest2: "0.22em",
+      height: {
+        nav: "76px",
       },
       keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        orbCore: {
+          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)", opacity: "1" },
+          "50%": { transform: "translate(-50%, -50%) scale(1.1)", opacity: "0.8" },
         },
-        grain: {
-          "0%, 100%": { transform: "translate(0,0)" },
-          "10%": { transform: "translate(-1%,-2%)" },
-          "30%": { transform: "translate(2%,1%)" },
-          "50%": { transform: "translate(-1%,2%)" },
-          "70%": { transform: "translate(1%,-1%)" },
-          "90%": { transform: "translate(-2%,1%)" },
+        spinSlow: {
+          "100%": { transform: "translate(-50%, -50%) rotate(360deg)" },
+        },
+        spinReverse: {
+          "100%": { transform: "translate(-50%, -50%) rotate(-360deg)" },
         },
       },
       animation: {
-        fadeUp: "fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards",
-        grain: "grain 8s steps(10) infinite",
-      },
-      transitionTimingFunction: {
-        soft: "cubic-bezier(0.16, 1, 0.3, 1)",
+        orbCore: "orbCore 4s ease-in-out infinite",
+        spinSlow: "spinSlow 20s linear infinite",
+        spinReverse: "spinReverse 25s linear infinite",
       },
     },
   },

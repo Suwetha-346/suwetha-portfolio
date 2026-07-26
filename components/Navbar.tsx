@@ -1,209 +1,102 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Menu, X } from "lucide-react";
-import { NAV_LINKS, SOCIALS } from "@/lib/data";
+import {
+  Home,
+  User,
+  Briefcase,
+  Code,
+  Layers,
+  Award,
+  Globe,
+  Mail,
+  Download
+} from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import Magnetic from "./Magnetic";
+
+const NAV_ITEMS = [
+  { id: "home", label: "Home", icon: Home },
+  { id: "about", label: "About", icon: User },
+  { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "projects", label: "Projects", icon: Code },
+  { id: "skills", label: "Skills", icon: Layers },
+  { id: "certifications", label: "Certs", icon: Award },
+  { id: "profiles", label: "Profiles", icon: Globe },
+  { id: "contact", label: "Contact", icon: Mail },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const handleScroll = () => {
+      const sections = NAV_ITEMS.map((item) => document.getElementById(item.id));
+      const scrollPosition = window.scrollY + 200;
 
-  useEffect(() => {
-    const sections = NAV_LINKS.map((link) =>
-      document.querySelector(link.href)
-    ).filter(Boolean) as Element[];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section) {
+          const top = section.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(NAV_ITEMS[i].id);
+            break;
           }
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
+        }
+      }
+    };
 
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (href: string) => {
-    setOpen(false);
-    const target = document.querySelector(href);
-    target?.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-ink/90 backdrop-blur-md border-b border-line shadow-lg shadow-black/20"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <nav
-        aria-label="Primary"
-        className={`container-edit flex items-center justify-between transition-all duration-500 relative ${
-          scrolled ? "py-3" : "py-5"
-        }`}
-      >
-        {/* Left Links (Desktop) */}
-        <div className="hidden lg:flex items-center gap-8 w-[30%] justify-start">
-          <ul className="flex items-center gap-6">
-            {NAV_LINKS.slice(0, 4).map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                  className={`text-xs uppercase tracking-widest2 transition-colors duration-200 ${
-                    active === link.href
-                      ? "text-gold"
-                      : "text-paper-muted hover:text-paper"
-                  }`}
-                  aria-current={active === link.href ? "page" : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+    <nav className="site-nav" id="siteNav">
+      <div className="nav-pill">
+        {NAV_ITEMS.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeSection === item.id;
+          return (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.id);
+              }}
+              className={`nav-link ${isActive ? "active" : ""}`}
+              data-section={item.id}
+            >
+              <Icon size={14} className="nav-icon" />
+              <span className="nav-label">{item.label}</span>
+            </a>
+          );
+        })}
+        <div className="w-[1px] h-6 bg-white/20 dark:bg-black/20 mx-1 hidden md:block"></div>
+        <div className="hidden md:block">
+          <Magnetic>
+            <ThemeToggle />
+          </Magnetic>
         </div>
-
-        {/* Centered Name / Logo + Interests */}
-        <div className="flex flex-col items-center justify-center w-full lg:w-[40%] text-center">
-          {/* Mobile Spacer to center logo */}
-          <div className="lg:hidden h-1" />
-
+        <Magnetic>
           <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick("#home");
-            }}
-            className="group font-display text-2xl md:text-3xl lg:text-[2rem] font-semibold tracking-wider text-paper hover:text-gold transition-all duration-300 flex flex-col items-center gap-1"
+            href="/Suwetha_S_T_Resume.pdf"
+            download="Suwetha_S_T_Resume.pdf"
+            className="hidden md:flex items-center gap-2 px-4 py-2 bg-purple-600/20 text-purple-400 hover:bg-purple-600 hover:text-white rounded-full transition-colors ml-1 text-xs font-mono font-bold tracking-widest border border-purple-500/30"
           >
-            <span>Suwetha S T</span>
-            <span className="text-[8px] md:text-[9px] lg:text-[10px] uppercase tracking-[0.2em] font-body font-normal text-paper-muted group-hover:text-gold-soft transition-colors duration-300 whitespace-nowrap">
-              Software &bull; Backend &bull; Data Analytics
-            </span>
+            <Download size={14} />
+            RESUME
           </a>
-        </div>
-
-        {/* Right Links & Socials (Desktop) */}
-        <div className="hidden lg:flex items-center gap-6 w-[30%] justify-end">
-          <ul className="flex items-center gap-6">
-            {NAV_LINKS.slice(4).map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                  className={`text-xs uppercase tracking-widest2 transition-colors duration-200 ${
-                    active === link.href
-                      ? "text-gold"
-                      : "text-paper-muted hover:text-paper"
-                  }`}
-                  aria-current={active === link.href ? "page" : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="flex items-center gap-4 pl-4 border-l border-line">
-            <a
-              href={SOCIALS.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              className="text-paper-muted hover:text-gold transition-colors"
-            >
-              <Github size={18} strokeWidth={1.5} />
-            </a>
-            <a
-              href={SOCIALS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              className="text-paper-muted hover:text-gold transition-colors"
-            >
-              <Linkedin size={18} strokeWidth={1.5} />
-            </a>
-          </div>
-        </div>
-
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          className="lg:hidden text-paper p-2 absolute right-4 top-1/2 -translate-y-1/2"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
-        </button>
-      </nav>
-
-      <div
-        id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-500 ease-soft ${
-          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <ul className="container-edit flex flex-col gap-1 pb-8 pt-2">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                }}
-                className={`block py-3 text-sm uppercase tracking-widest2 border-b border-line ${
-                  active === link.href ? "text-gold" : "text-paper-muted"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-          <li className="flex items-center gap-5 pt-5">
-            <a
-              href={SOCIALS.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              className="text-paper-muted hover:text-gold transition-colors"
-            >
-              <Github size={20} strokeWidth={1.5} />
-            </a>
-            <a
-              href={SOCIALS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              className="text-paper-muted hover:text-gold transition-colors"
-            >
-              <Linkedin size={20} strokeWidth={1.5} />
-            </a>
-          </li>
-        </ul>
+        </Magnetic>
       </div>
-    </header>
+    </nav>
   );
 }
