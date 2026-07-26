@@ -15,25 +15,11 @@ export default function Profiles() {
       color: "#0077b5",
     },
     {
-      name: "LinkedIn Activity Feed",
-      action: "View Posts & Updates",
-      url: SOCIALS.linkedinActivity,
-      icon: Activity,
-      color: "#a855f7",
-    },
-    {
       name: "GitHub Profile",
       action: "Explore Repositories",
       url: SOCIALS.github,
       icon: Github,
       color: "#ffffff",
-    },
-    {
-      name: "Academic Credentials",
-      action: "Verify 1st Rank Honors",
-      url: SOCIALS.linkedinActivity,
-      icon: Award,
-      color: "#f59e0b",
     },
   ];
 
@@ -63,7 +49,7 @@ export default function Profiles() {
         </div>
 
         {/* Profiles Grid */}
-        <div className="profiles-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="profiles-grid grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto mb-8">
           {profileCards.map((card, idx) => {
             const Icon = card.icon;
             return (
@@ -72,21 +58,21 @@ export default function Profiles() {
                 href={card.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="profile-card glass-card p-6 rounded-2xl flex items-center gap-4 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all duration-300 group"
+                className="profile-card glass-card p-6 md:p-8 rounded-2xl flex items-center justify-center sm:justify-start gap-4 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all duration-300 group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <div className="profile-icon w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <Icon size={22} style={{ color: card.color }} />
+                <div className="profile-icon w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <Icon size={26} style={{ color: card.color }} />
                 </div>
-                <div className="profile-info min-w-0 flex-1">
-                  <h4 className="text-base font-bold text-white font-display truncate group-hover:text-purple-300 transition-colors">
+                <div className="profile-info min-w-0 flex-1 text-center sm:text-left">
+                  <h4 className="text-lg font-bold text-white font-display truncate group-hover:text-purple-300 transition-colors">
                     {card.name}
                   </h4>
-                  <p className="text-xs text-white/60 flex items-center gap-1 font-mono mt-0.5">
-                    {card.action} <ExternalLink size={10} />
+                  <p className="text-sm text-white/60 flex items-center justify-center sm:justify-start gap-1 font-mono mt-1">
+                    {card.action} <ExternalLink size={12} />
                   </p>
                 </div>
               </motion.a>
@@ -94,8 +80,8 @@ export default function Profiles() {
           })}
         </div>
 
-        <p className="profile-note text-center text-xs font-mono text-white/50">
-          Click any card to explore Suwetha&apos;s active LinkedIn posts, certificates, and code repositories!
+        <p className="profile-note text-center text-sm font-mono text-white/50">
+          Click any card to explore Suwetha&apos;s professional network and code repositories!
         </p>
       </div>
     </section>

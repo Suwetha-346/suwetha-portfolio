@@ -13,7 +13,6 @@ export default function Hero() {
   useEffect(() => {
     const roles = [
       "AI & Data Science Student",
-      "1st Rank Academic Achiever",
       "Machine Learning Specialist",
       "Data Analytics Practitioner",
     ];
@@ -93,7 +92,7 @@ export default function Hero() {
           </h1>
 
           <h5 className="year text-base md:text-lg font-medium text-white/80 tracking-wide mb-8">
-            Suwetha S T | B.Tech AI & DS Undergrad (1st Rank Secured)
+            Suwetha S T | B.Tech AI & DS Undergraduate
           </h5>
 
           <div className="hero-buttons flex flex-wrap items-center justify-center gap-4">

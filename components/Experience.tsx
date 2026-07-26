@@ -5,7 +5,7 @@ import { TIMELINE } from "@/lib/data";
 
 export default function Experience() {
   return (
-    <section className="projects-section py-16 md:py-24" id="experience">
+    <section className="projects-section pt-8 pb-16 md:pt-12 md:pb-24" id="experience">
       <div className="w-full max-w-5xl mx-auto px-4">
         <h2 className="section-title text-3xl sm:text-4xl font-bold font-display text-white text-center mb-12">
           Work Experience & Journey - <span className="purple-text">Professional Path!</span>

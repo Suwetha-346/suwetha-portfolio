@@ -38,25 +38,18 @@ export const SKILL_FOCUS = {
 };
 
 export const TECH_STACK = [
-  { name: "Python", icon: "🐍", category: "languages" },
-  { name: "Java", icon: "☕", category: "languages" },
-  { name: "C", icon: "⚙️", category: "languages" },
-  { name: "MySQL", icon: "🗄️", category: "databases" },
-  { name: "Power BI", icon: "📊", category: "backend" },
-  { name: "Google Colab", icon: "📓", category: "tools" },
-  { name: "VS Code", icon: "💻", category: "tools" },
-  { name: "Arduino", icon: "🔌", category: "tools" },
-  { name: "ESP32", icon: "📡", category: "tools" },
-  { name: "Pandas", icon: "🐼", category: "backend" },
-  { name: "NumPy", icon: "🔢", category: "backend" },
-  { name: "Scikit-learn", icon: "🧠", category: "backend" },
-  { name: "TensorFlow", icon: "🤖", category: "backend" },
-  { name: "Git", icon: "📝", category: "tools" },
-  { name: "GitHub", icon: "🐱", category: "tools" },
-  { name: "Linux", icon: "🐧", category: "tools" },
-  { name: "Jupyter", icon: "📔", category: "tools" },
-  { name: "Figma", icon: "🎨", category: "tools" },
-  { name: "Postman", icon: "📬", category: "tools" },
+  { name: "Python", subtitle: "Advanced (ML, NLP, Logic)", icon: "🐍", category: "Programming", progress: 85 },
+  { name: "Java", subtitle: "Intermediate (Swing, OOP, CRUD)", icon: "☕", category: "Programming", progress: 70 },
+  { name: "C Language", subtitle: "Core Data Structures", icon: "C", category: "Programming", progress: 75 },
+  { name: "HTML5", subtitle: "Semantic UI & Accessibility", icon: "5", category: "Web Tech", progress: 90 },
+  { name: "CSS3 & Glassmorphism", subtitle: "Flexbox, Grid, Animations", icon: "CSS", category: "Web Tech", progress: 85 },
+  { name: "JavaScript (ES6+)", subtitle: "Interactive DOM, Async APIs", icon: "JS", category: "Web Tech", progress: 80 },
+  { name: "Microsoft Power BI", subtitle: "Data Visualization & Dashboards", icon: "📊", category: "Tools & DB", progress: 85 },
+  { name: "MySQL Database", subtitle: "Relational Modeling & Queries", icon: "🗄️", category: "Tools & DB", progress: 80 },
+  { name: "IDE & Tools", subtitle: "VS Code, Apache NetBeans", icon: "💻", category: "Tools & DB", progress: 90 },
+  { name: "Problem-Solving", subtitle: "Algorithmic Mindset", icon: "🧩", category: "Soft Skills", progress: 95 },
+  { name: "Quick Learner & Adaptability", subtitle: "Rapid Tech Adoption", icon: "⚡", category: "Soft Skills", progress: 95 },
+  { name: "Teamwork & Time Management", subtitle: "Collaborative Execution", icon: "👥", category: "Soft Skills", progress: 90 },
 ];
 
 export const ABOUT_CHIPS = [
@@ -78,6 +71,7 @@ export type Project = {
   image: string;
   liveDemo: string | null;
   github: string | null;
+  year: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -96,10 +90,45 @@ export const PROJECTS: Project[] = [
     tech: ["Python", "Machine Learning", "Pandas", "Scikit-learn"],
     liveDemo: null,
     github: "https://github.com/Suwetha-346/Customer_churn_prediction",
+    year: "2026",
+  },
+  {
+    id: "spotify-music-analytics",
+    index: "02",
+    title: "Spotify Music Trend Analysis",
+    tag: "Data Analytics",
+    image: "",
+    description:
+      "Analyzed 10 years of music listening behavior through ETL processing and trend analysis.",
+    highlights: [
+      "Developed a comprehensive analytics project using Python and data analytics techniques.",
+      "Performed ETL processing to uncover insights across a decade of music trends.",
+    ],
+    tech: ["Python", "ETL", "Data Analytics", "Pandas"],
+    liveDemo: null,
+    github: "https://github.com/Suwetha-346/Music_trends_project",
+    year: "2026",
+  },
+  {
+    id: "sales-analysis",
+    index: "03",
+    title: "Sales Analysis Dashboard",
+    tag: "Data Analytics",
+    image: "",
+    description:
+      "An end-to-end sales analysis project involving data cleaning, relational storage, and interactive visualization.",
+    highlights: [
+      "Cleaned and preprocessed raw sales data using Microsoft Excel.",
+      "Stored and queried the refined data in a MySQL database, then built a Power BI dashboard for insights.",
+    ],
+    tech: ["Excel", "MySQL", "Power BI", "Data Cleaning"],
+    liveDemo: null,
+    github: null,
+    year: "2026",
   },
   {
     id: "smart-health-iot",
-    index: "02",
+    index: "04",
     title: "Smart Health IoT Pet Belt",
     tag: "IoT / Hardware",
     image: "/images/smart-health-iot.png",
@@ -113,10 +142,28 @@ export const PROJECTS: Project[] = [
     liveDemo: null,
     github:
       "https://github.com/Suwetha-346/Smart-IoT-Belt-Web-System-for-Dog-Creche-Management",
+    year: "2025",
+  },
+  {
+    id: "smart-parking",
+    index: "05",
+    title: "Smart Parking System",
+    tag: "IoT / Hardware",
+    image: "",
+    description:
+      "An IoT solution to identify empty parking slots and reduce traffic congestion in cities.",
+    highlights: [
+      "Built using Arduino and IR sensors for real-time slot detection.",
+      "Aims to minimize traffic congestion by optimizing parking availability.",
+    ],
+    tech: ["Arduino", "IR Sensors", "Hardware", "IoT"],
+    liveDemo: null,
+    github: null,
+    year: "2024",
   },
   {
     id: "museum-management",
-    index: "03",
+    index: "06",
     title: "Museum Management System",
     tag: "Full Stack",
     image: "/images/museum-management.png",
@@ -129,6 +176,7 @@ export const PROJECTS: Project[] = [
     tech: ["Java", "MySQL", "CRUD", "Backend"],
     liveDemo: null,
     github: "https://github.com/Suwetha-346/Museum-Management-System",
+    year: "2024",
   },
 ];
 
@@ -141,13 +189,6 @@ export type TimelineEntry = {
 
 export const TIMELINE: TimelineEntry[] = [
   {
-    year: "2025-2026",
-    role: "1st Rank Academic Award & Distinction",
-    subtitle: "Dr. Mahalingam College of Eng. & Tech.",
-    description:
-      "Awarded 1st Rank in B.Tech Artificial Intelligence & Data Science for outstanding academic performance, maintaining CGPA 9.015 and top proficiency across core subjects.",
-  },
-  {
     year: "2025",
     role: "Data Science Intern",
     subtitle: "Krish Tec",
@@ -155,18 +196,25 @@ export const TIMELINE: TimelineEntry[] = [
       "Transformed raw datasets into actionable insights through preprocessing and predictive modeling. Created visual analytics using Python, Pandas, and Google Colab.",
   },
   {
-    year: "2024",
-    role: "AI & Data Science Undergrad",
-    subtitle: "B.Tech Student",
+    year: "2023 - 2027",
+    role: "AI & Data Science Undergraduate",
+    subtitle: "Dr. Mahalingam College of Engineering and Technology, Pollachi",
     description:
-      "Building end-to-end Machine Learning pipelines, IoT hardware systems, and backend database applications.",
+      "Pursuing B.Tech while building end-to-end Machine Learning pipelines, IoT hardware systems, and backend database applications. Current CGPA: 8.94",
   },
   {
     year: "2023",
     role: "Higher Secondary Certificate (HSC)",
-    subtitle: "Academic Distinction (92.16%)",
+    subtitle: "G. Ramaswamy Naidu Matriculation Higher Secondary School, Coimbatore",
     description:
-      "Completed HSC with 92.16% from G. Ramaswamy Naidu Matriculation School. Built foundational mastery in advanced mathematics and computer science.",
+      "Completed HSC with Academic Distinction (92.16%). Built foundational mastery in advanced mathematics and computer science.",
+  },
+  {
+    year: "2021",
+    role: "Secondary School Leaving Certificate (SSLC)",
+    subtitle: "G. Ramaswamy Naidu Matriculation Higher Secondary School, Coimbatore",
+    description:
+      "Successfully completed Secondary School Leaving Certificate (SSLC) with a passing grade.",
   },
 ];
 
@@ -192,8 +240,7 @@ export const EDUCATION = [
     affiliation: "Anna University",
     meta: [
       { label: "Expected Graduation", value: "May 2027" },
-      { label: "CGPA", value: "9.015" },
-      { label: "Academic Honor", value: "1st Rank Secured (2025-2026)" },
+      { label: "CGPA", value: "8.94" }
     ],
   },
   {
@@ -219,13 +266,13 @@ export type Certification = {
 export const CERTIFICATIONS: Certification[] = [
   {
     id: "academic-rank-1",
-    title: "1st Rank Academic Excellence Award (2025-2026)",
+    title: "1st Rank Academic Excellence Award (2024-2025)",
     issuer: "Dr. Mahalingam College of Engineering & Tech",
-    date: "Academic Year 2025-2026",
+    date: "Academic Year 2024-2025",
     category: "Academic Honor",
     description:
       "Honored with First Rank in B.Tech AI & Data Science by the academic jury for achieving top scholastic proficiency and academic distinction.",
-    image: "/images/nptel_social_networks_elite.jpg",
+    image: "/images/academic_success_stage.jpg",
     link: "https://www.linkedin.com/in/suwetha-s-t-12a059294/recent-activity/all/",
   },
   {
@@ -251,204 +298,6 @@ export const CERTIFICATIONS: Certification[] = [
     link: "https://www.linkedin.com/in/suwetha-s-t-12a059294/recent-activity/all/",
   },
   {
-    id: "accenture-innovation",
-    title: "Accenture Innovation Challenge Certificate",
-    issuer: "Accenture",
-    date: "2025",
-    category: "Competition & Innovation",
-    description:
-      "Awarded official badge & certificate of participation in the Accenture Innovation Challenge 2024 for developing impactful technology solutions.",
-    image: "/images/accenture_innovation_new.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_hello-everyone-happy-to-share-my-certificate-activity-7289121313745424384-xNs0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "deloitte-data-analytics",
-    title: "Deloitte: Data Analytics Job Simulation",
-    issuer: "Deloitte / Forage",
-    date: "2025",
-    category: "Industry Simulation",
-    description:
-      "Completed Deloitte Data Analytics Job Simulation, applying practical forensic technology and data analysis to complex business scenarios.",
-    image: "/images/deloitte_new.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_deloitte-dataanalytics-forage-activity-7481371807866855425-10wD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "mongodb-data-modeling",
-    title: "MongoDB Data Modeling Skills for Developers",
-    issuer: "MongoDB",
-    date: "June 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the MongoDB Data Modeling Skills for Developers course.",
-    image: "/images/mongodb_data_modeling.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_mongodb-certification-datamodeling-activity-7349086898620899329-q9HE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "mongodb-rag",
-    title: "RAG with MongoDB",
-    issuer: "MongoDB",
-    date: "June 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the RAG with MongoDB course.",
-    image: "/images/mongodb_rag.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_mongodb-certification-datamodeling-activity-7349086898620899329-q9HE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "mongodb-schema-patterns",
-    title: "Schema Patterns and Antipatterns",
-    issuer: "MongoDB",
-    date: "June 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the Schema Patterns and Antipatterns course.",
-    image: "/images/mongodb_schema_patterns.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_mongodb-certification-datamodeling-activity-7349086898620899329-q9HE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "mongodb-adv-schema",
-    title: "Advanced Schema Patterns and Antipatterns",
-    issuer: "MongoDB",
-    date: "June 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the Advanced Schema Patterns and Antipatterns course.",
-    image: "/images/mongodb_adv_schema.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_mongodb-certification-datamodeling-activity-7349086898620899329-q9HE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "mongodb-relational-to-document",
-    title: "Relational to Document Model",
-    issuer: "MongoDB",
-    date: "June 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the Relational to Document Model course.",
-    image: "/images/mongodb_relational_to_document.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_mongodb-certification-datamodeling-activity-7349086898620899329-q9HE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "hplife-agile",
-    title: "Agile Project Management",
-    issuer: "HP LIFE / HP Foundation",
-    date: "July 2025",
-    category: "Course Completion",
-    description:
-      "Successfully completed the HP LIFE online course Agile Project Management, covering MVP definition, Scrum, and Kanban.",
-    image: "/images/hp_life_agile.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_agile-projectmanagement-hplife-activity-7350878651455877120-rjEW?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "scaler-eda",
-    title: "EDA and Data Visualization Course",
-    issuer: "Scaler Topics",
-    date: "July 19, 2025",
-    category: "Course Completion",
-    description:
-      "Completed EDA and Data Visualization Course in Data Science, including 88 Video Tutorials, 7 Modules, and 6 Challenges.",
-    image: "/images/scaler_eda.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_scaler-datascience-eda-activity-7352383606293491712-swOZ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "unstop-adobe-hackathon",
-    title: "Adobe India Hackathon - Team FUSION FORCE",
-    issuer: "Unstop & Adobe",
-    date: "August 2025",
-    category: "Competition & Innovation",
-    description:
-      "Participated in Round 1 (Online MCQ Assessment & Coding) of the Adobe India Hackathon.",
-    image: "/images/unstop_adobe.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_unstop-hackathon-happylearning-activity-7366493880118063104-QIO3?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "salesforce-agentblazer",
-    title: "Agentblazer Champion 2025",
-    issuer: "Salesforce Trailhead",
-    date: "2025",
-    category: "Certification",
-    description:
-      "Recognized as an Agentblazer Champion for learning foundational AI concepts and gaining hands-on Agentforce experience.",
-    image: "/images/salesforce_agentblazer.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_salesforce-agentblazer-trailhead-activity-7481368730912878592-LN47?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "tata-forage-powerbi",
-    title: "Data Visualisation: Empowering Business with Effective Insights",
-    issuer: "Tata / Forage",
-    date: "July 2026",
-    category: "Job Simulation",
-    description:
-      "Completed practical tasks in framing business scenarios, choosing right visuals, and communicating insights in Power BI.",
-    image: "/images/tata_forage_powerbi.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_powerbi-dataanalytics-datavisualization-activity-7484497462905315328-hKcE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "genai-llm-workshop",
-    title: "Two Days Workshop on GenAI with LLM",
-    issuer: "Dr. Mahalingam College of Engineering & Technology",
-    date: "October 2025",
-    category: "Workshop",
-    description:
-      "Participated in an intensive two-day workshop focused on Generative AI and Large Language Models organized by the AI & DS department.",
-    image: "/images/genai_llm_workshop.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_generativeai-llm-artificialintelligence-activity-7483035763090026496-iFwq?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "invictus-leadership",
-    title: "Invictus Leadership & Teamwork",
-    issuer: "Invictus",
-    date: "2025",
-    category: "Leadership",
-    description:
-      "Demonstrated strong leadership, teamwork, and collaborative skills within a driven community.",
-    image: "/images/invictus_leadership.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_invictus-leadership-teamwork-activity-7481769685781229569-6l3K?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "cognizant-hackathon",
-    title: "Cognizant Technoverse Hackathon 2026",
-    issuer: "Cognizant",
-    date: "2026",
-    category: "Hackathon",
-    description:
-      "Recognized for participation, innovation, and technological problem-solving in the Cognizant Technoverse Hackathon 2026.",
-    image: "/images/cognizant_hackathon.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_cognizant-technoverse2026-hackathon-activity-7481373341937786880-z9TI?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "grc-governance",
-    title: "GRC - Governance Risk Management",
-    issuer: "Self-Paced / Workshop",
-    date: "2025",
-    category: "Course Completion",
-    description:
-      "Gained comprehensive understanding of Governance, Risk Management, and Compliance (GRC) frameworks.",
-    image: "/images/grc_governance.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_grc-governance-riskmanagement-activity-7484501244112437248-c3Cs?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "oracle-cloud-erp",
-    title: "Oracle Cloud ERP Certified Foundations Associate",
-    issuer: "Oracle University",
-    date: "April 06, 2025",
-    category: "Certification",
-    description:
-      "Recognized by Oracle Corporation as an Oracle Fusion Cloud Applications ERP Certified Foundations Associate.",
-    image: "/images/oracle_cloud.png",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_oraclecloud-erp-cx-activity-7314672976468090880-wAFN?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "psg-codestorm",
-    title: "CodeStorm KRIYA 2025",
-    issuer: "PSG College of Technology",
-    date: "March 14-16, 2025",
-    category: "Competition & Innovation",
-    description:
-      "Participated in the CodeStorm event of KRIYA 2025 held at PSG College of Technology.",
-    image: "/images/psg_codestorm.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_hello-everyone-happy-to-share-my-certificate-activity-7309611130190970880-fZV9?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
     id: "nptel-project-management",
     title: "NPTEL: Project Management for Managers (Elite)",
     issuer: "NPTEL / IIT Roorkee",
@@ -458,116 +307,6 @@ export const CERTIFICATIONS: Certification[] = [
       "Successfully completed the 12-week course 'Project Management for Managers' with a consolidated score of 65%.",
     image: "/images/nptel_project_management.jpg",
     link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_nptel-projectmanagement-learning-activity-7262831001943355393-r22z?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "sawit-learnathon",
-    title: "SAWIT.AI Learnathon: Generative AI",
-    issuer: "GUVI / SAWIT",
-    date: "Sept 21, 2024",
-    category: "Workshop",
-    description:
-      "Awarded certificate of achievement for the successful completion of SAWIT.AI Learnathon Program covering fundamentals of Generative AI.",
-    image: "/images/sawit_learnathon.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_ai-generativeai-rag-activity-7247218707888816128--aBY?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "guvi-genai",
-    title: "Generative AI",
-    issuer: "GUVI",
-    date: "Sept 21, 2024",
-    category: "Course Completion",
-    description:
-      "Awarded certificate of achievement for the successful completion of Generative AI.",
-    image: "/images/guvi_generative_ai.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_genai-openai-api-activity-7244685952634253313-sFML?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "powerbi-workshop",
-    title: "Artificial Intelligence - Microsoft PowerBI",
-    issuer: "Dr. Mahalingam College of Engineering & Technology",
-    date: "Aug 27-28, 2024",
-    category: "Workshop",
-    description:
-      "Participated in the Two Days Workshop on 'Artificial Intelligence - Microsoft PowerBI'.",
-    image: "/images/powerbi_workshop.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_powerbi-datavisualization-microsoftworkshop-activity-7243956819394494464-PdOp?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "nxtwave-genai",
-    title: "AI for Students: Build Your Own Generative AI Model",
-    issuer: "NxtWave",
-    date: "Sept 20, 2024",
-    category: "Workshop",
-    description:
-      "Successfully completed the hands-on project in 'Build Your Own Generative AI Model' workshop.",
-    image: "/images/nxtwave_genai.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_generativeai-aiinnovation-techjourney-activity-7243614154006134784-kGZQ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "nxtwave-genai-participation",
-    title: "AI for Students: Build Your Own Generative AI Model",
-    issuer: "NxtWave",
-    date: "Sept 20, 2024",
-    category: "Workshop",
-    description:
-      "Participated in the Workshop on 'AI for Students: Build Your Own Generative AI Model'.",
-    image: "/images/nxtwave_genai_participation.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_genai-futuretech-lifelearning-activity-7243609683976937472-jLQ0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "tata-crucible-quiz",
-    title: "TATA Crucible Campus Quiz 2024",
-    issuer: "TATA Group / Unstop",
-    date: "2024",
-    category: "Competition & Innovation",
-    description:
-      "Participated in the TATA Crucible Campus Quiz 2024 organised by the Tata Group.",
-    image: "/images/tata_crucible_quiz.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_unstop-tatacruciblecampusquiz-activity-7242131488106766337-P3AZ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "accenture-innovator",
-    title: "Innovator Badge - Accenture Innovation Challenge",
-    issuer: "Accenture / Hack2Skill",
-    date: "2024",
-    category: "Competition & Innovation",
-    description:
-      "Awarded the 'Innovator' badge at the Accenture Innovation Challenge for showcasing technological excellence.",
-    image: "/images/accenture_innovator_badge.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_accenture-hack2skill-innovationchallenge-activity-7240356525297311744-N3fw?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "imagecon-engineers-day",
-    title: "Engineers Day Contest 2024",
-    issuer: "Imagecon Academy",
-    date: "Sept 15, 2024",
-    category: "Competition & Innovation",
-    description:
-      "Successfully participated in the Engineers Day Contest 2024 among 10,000 participants.",
-    image: "/images/imagecon_engineers_day.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_imageconacademy-engineersday2024-activity-7241012105821184000-IsX5?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "flipkart-grid",
-    title: "Flipkart GRiD 6.0 - Software Development Track",
-    issuer: "Flipkart / Unstop",
-    date: "2024",
-    category: "Competition & Innovation",
-    description:
-      "Participated in Level 1: E-Commerce & Tech Quiz of the Flipkart GRiD 6.0 - Software Development Track.",
-    image: "/images/flipkart_grid.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_unstop-flipkart-quiz-activity-7234178369565704193-EpuF?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  },
-  {
-    id: "techtrek-fullstack",
-    title: "TechTrek: Full-Stack Development to Industry Mastery",
-    issuer: "Coimbatore Institute of Technology",
-    date: "August 10, 2024",
-    category: "Workshop",
-    description:
-      "Participated in the one day national workshop hosted by the Department of Information Technology, CIT.",
-    image: "/images/techtrek_fullstack.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_fullstackdevelopment-techietech-cit-activity-7233772672361361410-GFtU?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
   },
   {
     id: "nptel-python",
@@ -581,26 +320,26 @@ export const CERTIFICATIONS: Certification[] = [
     link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_hello-connections-i-have-successfully-activity-7233770060706627584-hSXU?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
   },
   {
-    id: "robomiracle-industrial-visit",
-    title: "One-Day Industrial Visit at Robomiraccle Technologies",
-    issuer: "Robomiraccle Technologies Private Limited",
-    date: "April 25, 2024",
-    category: "Workshop",
+    id: "tcs-ion-nqt",
+    title: "TCS iON NQT - IT (63.48%)",
+    issuer: "TCS iON",
+    date: "June 2026",
+    category: "Assessment",
     description:
-      "Successfully completed a one-day industrial visit at Robomiraccle Technologies Private Limited.",
-    image: "/images/robomiracle_visit.jpg",
-    link: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_hello-connections-i-am-excited-to-share-activity-7233769376787611649-XlG6?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
-  }
+      "Successfully cleared the TCS iON National Qualifier Test (NQT) for IT with a total percentage of 63.48%, demonstrating proficiency in Foundation, Advanced Reasoning, and Java Programming.",
+    image: "/images/tcs_nqt.jpg",
+    link: "#",
+  },
 ];
 
 export const SPECIAL_ACADEMIC_HIGHLIGHT = {
-  title: "1st Rank Secured — Academic Year 2025–2026",
+  title: "1st Rank Secured — Academic Year 2024–2025",
   department: "B.Tech Artificial Intelligence and Data Science",
   institution: "Dr. Mahalingam College of Engineering & Technology",
   cgpa: "9.015",
   honors: "Department Academic Topper & Proficiency Gold Award",
   description:
-    "Recognized and awarded by the university jury for securing 1st Rank across the academic department for 2025–2026. Demonstrating relentless academic dedication, technical mastery, and analytical innovation.",
+    "Recognized and awarded by the university jury for securing 1st Rank across the academic department for 2024–2025. Demonstrating relentless academic dedication, technical mastery, and analytical innovation.",
   juryAwardImage: "/images/academic_success_stage.jpg",
   linkedinPostLink: "https://www.linkedin.com/posts/suwetha-s-t-12a059294_academicsuccess-learning-growth-activity-7481946885511991296-TXJu?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEfeze4BwEP5-pBBZheZ2MFtxPwrEgVXaCI",
 };
@@ -624,3 +363,28 @@ export const SKILL_GROUPS = [
   },
 ];
 
+
+export type VolunteeringRole = {
+  id: string;
+  role: string;
+  organization: string;
+  description: string;
+  icon: string;
+};
+
+export const VOLUNTEERING: VolunteeringRole[] = [
+  {
+    id: "nss-volunteer",
+    role: "NSS Volunteer",
+    organization: "National Service Scheme (NSS), College Level",
+    description: "Actively volunteered for various events, organizing campaigns, social service drives, and community outreach programs.",
+    icon: "HeartHandshake",
+  },
+  {
+    id: "invictus-docs",
+    role: "Documentation In-charge",
+    organization: "Invictus (Department Association)",
+    description: "Managed complete event documentation, drafted official reports, and maintained records for departmental technical and cultural events.",
+    icon: "FileText",
+  }
+];

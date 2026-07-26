@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Suwetha S T | DevHQ Personal Portfolio",
   description:
-    "Personal Portfolio of Suwetha S T, B.Tech Artificial Intelligence and Data Science Undergraduate & 1st Rank Academic Achiever. Explore projects, certifications, and experience.",
+    "Personal Portfolio of Suwetha S T, B.Tech Artificial Intelligence and Data Science Undergraduate. Explore projects, certifications, and experience.",
   openGraph: {
     title: "Suwetha S T | DevHQ Personal Portfolio",
     description: "Explore my AI & Data Science projects, academic achievements, and certifications.",

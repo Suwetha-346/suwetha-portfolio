@@ -39,12 +39,12 @@ export default function Preloader() {
           </div>
 
           {/* Branding */}
-          <div className="preloader-brand">
-            <div className="preloader-brand-main">
+          <div className="preloader-brand flex flex-col items-center justify-center w-full">
+            <div className="preloader-brand-main flex items-center justify-center">
               <span className="preloader-brand-name">SUWETHA</span>
               <span className="preloader-brand-accent">S T</span>
             </div>
-            <div className="preloader-brand-subtitle">
+            <div className="preloader-brand-subtitle flex items-center justify-center">
               <span className="subtitle-line" />
               <span>B.Tech AI & Data Science</span>
               <span className="subtitle-line" />
@@ -52,7 +52,7 @@ export default function Preloader() {
           </div>
 
           {/* Sleek Loading Bar */}
-          <div className="preloader-sleek-track">
+          <div className="preloader-sleek-track mx-auto">
             <div
               className="preloader-sleek-fill"
               id="preloaderSleekFill"
@@ -61,7 +61,7 @@ export default function Preloader() {
           </div>
 
           {/* Cycling Tagline */}
-          <div className="preloader-tagline">
+          <div className="preloader-tagline flex justify-center w-full">
             <span className="tagline-word" style={{ animationDelay: "0s" }}>
               Data.
             </span>

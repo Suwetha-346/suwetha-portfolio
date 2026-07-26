@@ -58,7 +58,7 @@ export default function AcademicHighlight() {
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10 col-span-2 sm:col-span-1">
                   <span className="block text-2xl font-bold font-display text-emerald-400">
-                    2025-26
+                    2024-25
                   </span>
                   <span className="text-xs text-white/60">Academic Year</span>
                 </div>
